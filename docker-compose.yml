@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  web:
+    image: nginx
+    ports:
+      - 80:80
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    depends_on:
+      - app
+
+  
+  app:
+    build: .
+    volumes:
+      - ./rails_app:/rails_app
+    environment:
+      - RAILS_ENV=${RAILS_ENV} # 5d3a5e202f160bebb3aefb7cda46ccc489690b45c82883b2421460c8b30713fc2fbceed5dc42a08b9d3fb9bd92ae568b4f6bbf4edbe09ca0f9aeed2938e8b907
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - 5432
