@@ -1,0 +1,3 @@
+[submodule "rails_app"]
+	path = rails_app
+	url = git@github.com:fabianaramos/rails-app-nginx.git
