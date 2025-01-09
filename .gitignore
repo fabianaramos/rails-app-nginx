@@ -1,1 +1,3 @@
 postgres/
+rails_app/config/credentials/production.key
+rails_app/config/credentials/development.key
